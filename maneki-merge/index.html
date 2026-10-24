@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <title>Maneki Merge</title>
+    <meta
+      name="description"
+      content="Lucky-cat merge game with a growing jar. Offline PWA for iOS and Android."
+    />
+    <meta name="theme-color" content="#fcefdf" />
+    <!-- "only": a phone's forced dark mode (Chrome's dark sites, the WebView's darkening) must
+         never repaint the game (TECH_SPEC §10). -->
+    <meta name="color-scheme" content="only light" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Home-screen app (iOS ignores the manifest's display mode and orientation). -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Maneki" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <link rel="icon" href="/maneki-merge/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/maneki-merge/pwa-192x192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="/maneki-merge/apple-touch-icon-180x180.png" />
+    <!-- vite-plugin-pwa injects the manifest link. -->
+
+    <!-- Paint the theme color before the CSS bundle loads (no white flash on launch). -->
+    <style>html{background:#fcefdf}.loading{z-index:1100;background:#f7f0d4;transition:opacity ease-out;position:fixed;inset:0;overflow:hidden}.loading.is-done{opacity:0;pointer-events:none}.loading img{-webkit-user-select:none;user-select:none;-webkit-user-drag:none;position:absolute}.loading-bg{object-fit:cover;object-position:50% 100%;width:100%;height:100%;inset:0}.loading-logo{top:calc(env(safe-area-inset-top,0px) + 6vh);width:min(82vw,44vh);left:50%;translate:-50%}.loading-hero{width:min(66vw,36vh);animation:1.6s ease-in-out infinite alternate loading-bob;top:36vh;left:50%;translate:-50%}@keyframes loading-bob{to{translate:-50% -2.5vh}}@media (prefers-reduced-motion:reduce){.loading-hero{animation:none}}.loading-bar{--s:calc(54px / var(--bar-h,1));left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 15vh);box-sizing:border-box;border:0 solid #0000;border-image:var(--bar-art) 0 var(--bar-right) 0 var(--bar-left) fill / 0 calc(var(--bar-right) * var(--s)) 0 calc(var(--bar-left) * var(--s)) stretch;visibility:hidden;width:min(80vw,340px);height:54px;position:absolute;translate:-50%}.loading-bar.is-art{visibility:visible}.loading-fill{left:calc(var(--fill-x) * var(--s));top:calc(var(--fill-y) * var(--s));width:calc((var(--fill-left) + var(--fill-right)) * var(--s) + var(--progress,0) * (100% - (var(--bar-left) + var(--bar-right)) * var(--s)));height:calc(var(--fill-h) * var(--s));box-sizing:border-box;border:0 solid #0000;border-image:var(--fill-art) 0 var(--fill-right) 0 var(--fill-left) fill / 0 calc(var(--fill-right) * var(--s)) 0 calc(var(--fill-left) * var(--s)) stretch;opacity:calc(var(--progress,0) * 40);transition:width .2s ease-out;position:absolute}.loading-label{left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 15vh - 40px);text-align:center;color:#4a2e25;margin:0;font:700 18px Fredoka,system-ui,sans-serif;position:absolute}</style>
+    <script type="module" crossorigin src="/maneki-merge/assets/index-BKFqEe6n.js"></script>
+    <link rel="stylesheet" crossorigin href="/maneki-merge/assets/index-C1L9ehlg.css">
+  <link rel="manifest" href="/maneki-merge/manifest.webmanifest"></head>
+  <body>
+    <main id="app">
+      <section id="menu-screen" class="screen" aria-label="Main menu"></section>
+      <section id="game-screen" class="screen" aria-label="Game" hidden></section>
+      <div id="overlays"></div>
+    </main>
+    <div
+      id="loading"
+      class="loading"
+      role="progressbar"
+      aria-label="Loading"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
+      <img class="loading-bg" src="/maneki-merge/assets/scene/background.webp" alt="" />
+      <img class="loading-logo" src="/maneki-merge/assets/menu/logo.webp" alt="" />
+      <img class="loading-hero" src="/maneki-merge/assets/menu/hero.webp" alt="" />
+      <div class="loading-bar"><div class="loading-fill"></div></div>
+      <p class="loading-label"></p>
+    </div>
+  </body>
+</html>
